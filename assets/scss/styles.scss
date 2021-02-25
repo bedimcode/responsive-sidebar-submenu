@@ -1,0 +1,320 @@
+/*========== GOOGLE FONTS ==========*/
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+
+/*========== VARIABLES CSS ==========*/
+:root{
+    --header-height: 3.5rem;
+    --nav-width: 219px;
+
+    /*========== Colors ==========*/
+    --first-color: #6923D0;
+    --first-color: purple;
+    --first-color-light: #F4F0FA;
+    --title-color: #19181B;
+    --text-color: #58555E;
+    --text-color-light: #A5A1AA;
+    --body-color: #F9F6FD;
+    --container-color: #FFFFFF;
+
+    /*========== Font and typography ==========*/
+    --body-font: 'Poppins', sans-serif;
+
+    --normal-font-size: .938rem;
+    --small-font-size: .75rem;
+    --smaller-font-size: .75rem;
+
+    @media screen and (min-width: 1024px){
+        --normal-font-size: 1rem;
+        --small-font-size: .875rem;
+        --smaller-font-size: .813rem;
+    }
+
+    /*========== Font weight ==========*/
+    --font-medium: 500;
+    --font-semi-bold: 600;
+
+    /*========== z index ==========*/
+    --z-fixed: 100;
+}
+
+/*========== BASE ==========*/
+*,::before,::after{
+    box-sizing: border-box;
+}
+
+body{
+    margin: var(--header-height) 0 0 0;
+    padding: 1rem 1rem 0;
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+}
+h3{
+    margin: 0;  
+}
+
+a{
+    text-decoration: none;
+}
+img{
+    max-width: 100%;
+    height: auto;
+}
+
+/*========== HEADER ==========*/
+.header{
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background-color: var(--container-color);
+    box-shadow: 0 1px 0 rgba(22, 8, 43, .1);
+    padding: 0 1rem;
+    z-index: var(--z-fixed);
+    
+    &__container{
+        display: flex;
+        align-items: center;
+        height: var(--header-height);
+        justify-content: space-between;
+    }
+
+    &__img{
+        width: 35px;
+        height: 35px;
+        border-radius: 50%;
+    }
+    &__logo{
+        color: var(--title-color);
+        font-weight: var(--font-medium);
+        display: none;
+    }
+    &__search{
+        display: flex;
+        padding: .40rem .75rem;
+        background-color: var(--first-color-light);
+        border-radius: .25rem;
+    }
+    &__input{
+        width: 100%;
+        border: none;
+        outline: none;
+        background-color: var(--first-color-light);
+
+        &::placeholder{
+            font-family: var(--body-font);
+            color: var(--text-color);
+        }
+    }
+    &__icon,
+    &__toggle{
+        font-size: 1.2rem;
+    }
+    &__toggle{
+        color: var(--title-color);
+        cursor: pointer;
+    }
+}
+
+/*========== NAV ==========*/
+.nav{
+    position: fixed;
+    top: 0;
+    left: -100%;
+    height: 100vh;
+    padding: 1rem 1rem 0;
+    background-color: var(--container-color);
+    box-shadow: 1px 0 0 rgba(22, 8, 43, .1);
+    z-index: var(--z-fixed);
+    transition: .4s;
+
+    &__container{
+        height: 100%;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        padding-bottom: 3rem;
+        overflow: auto;
+        scrollbar-width: none; /* For mozilla */
+
+        /* For Google Chrome and others */
+        &::-webkit-scrollbar {
+            display: none;
+        }
+    }
+
+
+    &__logo{
+        font-weight: var(--font-semi-bold);
+        margin-bottom: 2.5rem;
+    }
+
+    &__list, 
+    &__items{
+        display: grid;
+    }
+    &__list{
+        row-gap: 2.5rem;
+    }
+    &__items{
+        row-gap: 1.5rem;
+    }
+    &__subtitle{
+        font-size: var(--normal-font-size);
+        text-transform: uppercase;
+        letter-spacing: .1rem;
+        color: var(--text-color-light);
+    }
+    &__link{
+        display: flex;
+        align-items: center;
+        color: var(--text-color);
+
+        &:hover{
+            color: var(--first-color);
+        }
+    }
+    &__icon{
+        font-size: 1.2rem;
+        margin-right: .5rem;
+    }
+    &__name{
+        font-size: var(--small-font-size);
+        font-weight: var(--font-medium);
+        white-space: nowrap;
+    }
+    &__logout{
+        margin-top: 5rem;
+    }
+
+    /* Dropdown */
+    &__dropdown{
+        overflow: hidden;
+        max-height: 21px;
+        transition: .4s ease-in-out;
+
+        &-collapse{
+            background-color: var(--first-color-light);
+            border-radius: .25rem;
+            margin-top: 1rem;
+        }
+        &-content{
+            display: grid;
+            row-gap: .5rem;
+            padding: .75rem 2.5rem .75rem 1.8rem;
+        }
+
+        &-item{
+            font-size: var(--smaller-font-size);
+            font-weight: var(--font-medium);
+            color: var(--text-color);
+            
+            &:hover{
+                color: var(--first-color);
+            }
+        }
+        &-icon{
+            margin-left: auto;
+            transition: .4s;
+        }
+
+        /* Show collapse */
+        &:hover{
+            max-height: 100rem;
+        }
+
+        /*Rotate icon arrow*/
+        &:hover  &-icon{
+            transform: rotate(180deg);
+        }
+    }
+}
+
+/*===== Show menu =====*/
+.show-menu{
+    left: 0;
+}
+
+/*===== Active link =====*/
+.active{
+    color: var(--first-color);
+}
+
+/* ========== MEDIA QUERIES ==========*/
+/* For small devices reduce search*/
+@media screen and (max-width: 320px){
+    .header{
+        &__search{
+            width: 70%;
+        }
+    }
+}
+
+@media screen and (min-width: 768px){
+    body{
+        padding: 1rem 3rem 0 6rem;
+    }
+
+    .header{
+        padding: 0 3rem 0 6rem;
+
+        &__container{
+            height: calc(var(--header-height) + .5rem);
+        }
+        &__search{
+            width: 300px;
+            padding: .55rem .75rem;
+        }
+        &__toggle{
+            display: none;
+        }
+        &__logo{
+            display: block;
+        }
+        &__img{
+            width: 40px;
+            height: 40px;
+            order: 1;
+        }
+    }
+
+    .nav{
+        left: 0;
+        padding: 1.2rem 1.5rem 0;
+        width: 68px;
+        
+        &__items{
+            row-gap: 1.7rem;
+        }
+
+        &__icon{
+            font-size: 1.3rem;
+        }
+
+        &__logo-name,
+        &__name,
+        &__subtitle,
+        &__dropdown-icon{
+            opacity: 0;
+            transition: .3s;
+        }
+
+        &:hover{
+           width: var(--nav-width);
+        }
+
+        &:hover &__logo-name{
+            opacity: 1;
+        }
+        &:hover &__subtitle{
+            opacity: 1;
+        }
+        &:hover &__name{
+            opacity: 1;
+        }
+        &:hover &__dropdown-icon{
+            opacity: 1;
+        }
+    }
+}
